@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>v>>bewegt - anmelden oder registrieren</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <link href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="https://svax-storage.azureedge.net/b2cstorage/favicon-32x32.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <style id="common">
+        :root {
+            /* colors */
+            --white: #FFFFFF;
+
+            --green: #A9C811;
+            --green-light: #A9C8114D;
+            --green-dark: #96BF1F;
+
+            --black: #000000;
+            --black-light: #171714;
+
+            --grey: #EAEAEA;
+            --grey-light: #E6E6E6;
+            --grey-dark: #999B9E;
+
+            --blue: #3C65B6;
+        }
+        /*----------  end variables
+        ------------------------------------------------------------------------------*/
+        @font-face {
+            font-family: 'OpenSans';
+            src: url('https://svax-storage.azureedge.net/b2cstorage/OpenSans-Regular.ttf') format('truetype');
+        }
+        
+        @font-face {
+            font-family: 'OpenSansLight';
+            src: url(https://svax-storage.azureedge.net/b2cstorage/opensans-light-webfont.woff2);
+        }
+        
+        @font-face {
+            font-family: 'OpenSansBold';
+            src: url('https://svax-storage.azureedge.net/b2cstorage/OpenSans-SemiBold.ttf') format('truetype');
+        }
+        /* new */
+        ::placeholder {
+            font-family: 'OpenSans';
+            font-size: 15px;
+            color: var(--grey-dark);
+        }
+
+        .far{
+            font-size: 20px;
+            position: absolute;
+            top: 23px;
+            right: 10px;
+        }
+        
+        #AmazonExchange {
+            background-image: url(https://login.microsoftonline.com/static/tenant/templates/idp_logos/colored/amazon.svg);
+        }
+        
+        #AmazonExchange:hover {
+            background-image: url(https://login.microsoftonline.com/static/tenant/templates/idp_logos/white/amazon.svg);
+        }
+        
+        #FacebookExchange {
+            background-image: url('https://svax-storage.azureedge.net/b2cstorage/facebook.svg');
+        }
+        
+        #FacebookExchange:hover {
+        }
+        
+        #GitHubExchange {
+            background-image: url(https://login.microsoftonline.com/static/tenant/templates/idp_logos/colored/github.svg);
+        }
+        
+        #GitHubExchange:hover {
+            background-image: url(https://login.microsoftonline.com/static/tenant/templates/idp_logos/white/github.svg);
+        }
+        
+        #AppleExchange,
+        #AppleManagedExchange {
+            background-image: url('https://svax-storage.azureedge.net/b2cstorage/Apple.svg');
+        }
+        
+        #AppleExchange:hover,
+        #AppleManagedExchange:hover {
+        }
+        
+        #GoogleExchange {
+            background-image: url('https://svax-storage.azureedge.net/b2cstorage/google.svg');
+        }
+        
+        #GoogleExchange:hover {
+        }
+        
+        #LinkedInExchange {
+            background-image: url(https://login.microsoftonline.com/static/tenant/templates/idp_logos/colored/linkedin.svg);
+        }
+        
+        #LinkedInExchange:hover {
+            background-image: url(https://login.microsoftonline.com/static/tenant/templates/idp_logos/white/linkedin.svg);
+        }
+        
+        #MicrosoftAccountExchange {
+            background-image: url(https://login.microsoftonline.com/static/tenant/templates/idp_logos/colored/microsoft.svg);
+        }
+        
+        #MicrosoftAccountExchange:hover {
+            background-image: url(https://login.microsoftonline.com/static/tenant/templates/idp_logos/white/microsoft.svg);
+        }
+        
+        #QQExchange {
+            background-image: url(https://login.microsoftonline.com/static/tenant/templates/idp_logos/colored/qq.svg);
+        }
+        
+        #QQExchange:hover {
+            background-image: url(https://login.microsoftonline.com/static/tenant/templates/idp_logos/white/qq.svg);
+        }
+        
+        #TwitterExchange {
+            background-image: url(https://login.microsoftonline.com/static/tenant/templates/idp_logos/colored/twitter.svg);
+        }
+        
+        #TwitterExchange:hover {
+            background-image: url(https://login.microsoftonline.com/static/tenant/templates/idp_logos/white/twitter.svg);
+        }
+        
+        #WeChatExchange {
+            background-image: url(https://login.microsoftonline.com/static/tenant/templates/idp_logos/colored/wechat.svg);
+        }
+        
+        #WeChatExchange:hover {
+            background-image: url(https://login.microsoftonline.com/static/tenant/templates/idp_logos/white/wechat.svg);
+        }
+        
+        #WeiboExchange {
+            background-image: url(https://login.microsoftonline.com/static/tenant/templates/idp_logos/colored/weibo.svg);
+        }
+        
+        #WeiboExchange:hover {
+            background-image: url(https://login.microsoftonline.com/static/tenant/templates/idp_logos/white/weibo.svg);
+        }
+        
+        .buttons #cancel:before {
+            content: url(https://login.microsoftonline.com/static/tenant/templates/images/left-arrow.svg);
+        }
+    </style>
+    <style id="idpselector">
+        #SignInWithLogonNameExchange,
+        #SignUpWithLogonEmailExchange,
+        #SignUpWithLogonNameExchange {
+            background-image: url(https://login.microsoftonline.com/static/tenant/templates/idp_logos/colored/local.svg);
+        }
+        
+        #SignInWithLogonNameExchange:hover,
+        #SignUpWithLogonEmailExchange:hover,
+        #SignUpWithLogonNameExchange:hover {
+            background-image: url(https://login.microsoftonline.com/static/tenant/templates/idp_logos/white/local.svg);
+        }
+        
+        #SignUpWithLogonEmailExchange.text-link {
+            background-image: none;
+            background-color: transparent !important;
+        }
+        
+        #SignUpWithLogonEmailExchange.text-link:hover {
+            background-image: none;
+            background-color: transparent !important;
+        }
+    </style>
+
+    <style>
+        /* inject: css */
+        
+        html {
+            background: 0 0;
+            background-color: #fff;
+        }
+        
+        body {
+            font-family: "OpenSans";
+            background-attachment: fixed;
+            background-color: #fff;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            text-align: left;
+            font: -apple-system-body;
+        }
+        
+        p {
+            margin: 0
+        }
+        
+        a:focus {
+            outline: 0
+        }
+        
+        input,
+        select {
+            border: 1px solid rgba(0, 0, 0, 1);
+            padding: 0.75rem 1rem;
+        }
+        
+        img[data-tenant-branding-background=true] {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            position: fixed;
+            left: 0;
+            overflow: hidden;
+            top: 0
+        }
+        
+        div[data-tenant-branding-background-color=true] {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 0
+        }
+        
+        .container {
+            background-color: var(--white);
+            text-align: center;
+            width: 100%;
+            display: table;
+            height: 100vh;
+            padding: 0
+        }
+        
+        #api {
+            margin: 0 auto
+        }
+        
+        .heading h1 {
+            font-family: "OpenSansBold";
+            font-size: 30px;
+            font-weight: 600;
+            line-height: 41px;
+            margin-bottom: 46px;
+            text-transform: uppercase;
+            color: var(--green)
+        }
+        
+        .col-lg-6 {
+            max-width: 470px;
+            width: 100%;
+            float: none;
+            display: inline-block;
+            vertical-align: top;
+            padding: 0
+        }
+        
+        .row {
+            width: 100%;
+            margin: 0;
+            display: table-cell;
+            vertical-align: middle
+        }
+        
+        ul {
+            padding: 0
+        }
+        
+        #simplemodal-container .simplemodal-data {
+            padding: 5px 8px;
+            overflow: hidden;
+            background-color: #fff;
+            border-radius: 3px;
+            font-style: italic
+        }
+        
+        #LocalAccountSigninEmailExchange,
+        #LocalAccountSigninUsernameExchange,
+        #SignInWithLogonEmailExchange,
+        #SignInWithLogonNameExchange,
+        #SignUpWithLogonEmailExchange,
+        #SignUpWithLogonNameExchange {
+            background-color: #AAC80F;
+            background-image: url(none);
+            background-size: 10%;
+            background-position-x: 95%;
+            background-position-y: 50%;
+            background-repeat: no-repeat;
+            border-radius: .5rem;
+            width: 100%;
+            width: 100%;
+            font-size: 1em;
+            margin-left: auto
+        }
+        
+        #LocalAccountSigninEmailExchange:hover,
+        #LocalAccountSigninUsernameExchange:hover,
+        #SignInWithLogonEmailExchange:hover,
+        #SignInWithLogonNameExchange:hover,
+        #SignUpWithLogonEmailExchange:hover,
+        #SignUpWithLogonNameExchange:hover {
+            background-color: #AAC80F!important
+        }
+        
+        #AmazonExchange:hover {
+            background-color: #36474f!important
+        }
+        
+        #FacebookExchange:hover {
+        }
+        
+        #GitHubExchange:hover {
+            background-color: #0f0f0f!important
+        }
+        
+        #AppleExchange:hover,
+        #AppleManagedExchange:hover {
+        }
+        
+        #GoogleExchange:hover {
+        }
+        
+        #LinkedInExchange:hover {
+            background-color: #0274b3!important
+        }
+        
+        #MicrosoftAccountExchange:hover {
+            background-color: #01a4ef!important
+        }
+        
+        #QQExchange:hover {
+            background-color: #1a97df!important
+        }
+        
+        #TwitterExchange:hover {
+            background-color: #1da1f2!important
+        }
+        
+        #WeChatExchange:hover {
+            background-color: #4cc522!important
+        }
+        
+        #WeiboExchange:hover {
+            background-color: #e81123!important
+        }
+        
+        .buttons button {
+            
+        }
+        
+        .buttons button[aria-disabled=true] {
+            opacity: .3
+        }
+        
+        .buttons button:not([aria-disabled=true]) {
+            opacity: 1
+        }
+        
+        .buttons #cancel {
+            padding: 0;
+            margin-left: auto;
+            background: 0 0;
+            border: 0;
+            width: inherit;
+            position: absolute;
+            background-color: transparent;
+            top: 2px;
+            left: 15px;
+            font-size: 1em;
+            color: #505050;
+            box-shadow: none;
+            text-align: left;
+			z-index: 10;
+        }
+        
+        .buttons #cancel:hover {
+            color: #000!important
+        }
+        
+        .buttons #cancel:before {
+            padding: 10px;
+            vertical-align: sub;
+            zoom: 90%;
+            display: inline-block
+        }
+        
+        #attributeList ul {
+            padding: 0
+        }
+        
+        #attributeList ul li {
+            list-style: none;
+            margin: 1rem 0
+        }
+        
+        label {
+            font-weight: 600;
+            display: none;
+        }
+        
+        #attributeList ul li label {
+            display: block;
+            text-align: left;
+            float: none
+        }
+        
+        #attributeList ul li.EmailBox label,
+        #attributeList ul li.Password label,
+        #attributeList ul li.TextBox label {
+            display: none!important
+        }
+        
+        #attributeList ul li label[for=country] {
+            float: left;
+            display: inline-block!important;
+            margin-bottom: .5rem
+        }
+        
+        #attributeList ul li label[for=cpiminternal_legalCountry] {
+            float: none;
+            display: block!important;
+            text-align: left;
+            margin-bottom: .5rem
+        }
+        
+        #attributeList ul li label[for=cpiminternal_dateOfBirth] {
+            float: none;
+            text-align: left;
+            display: block!important;
+            margin-bottom: .5rem
+        }
+        
+        #attributeList ul li input {
+            border: 2px solid var(--green);
+            border-radius: 9px;
+            font-size: 15px;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 19px;
+            width: 100% !important;
+        }
+        
+        #attributeList ul li input::-webkit-input-placeholder {
+            text-indent: 20px
+        }
+        
+        #attributeList ul li .attrEntry.validate input.invalid,
+        #attributeList ul li .attrEntry.validate input:invalid {
+            border: 1px solid #FF0000
+        }
+        
+        #attributeList ul li .attrEntry .verify {
+            margin-top: 2rem;
+            padding-bottom: 10px;
+            position: relative
+        }
+        
+        #attributeList ul li .attrEntry .verificationControlContent .buttons {
+            margin-top: 2rem;
+            padding-bottom: 10px;
+            position: relative
+        }
+        
+        #attributeList ul li .attrEntry .verify .sendButton[id$=ver_but_send] {
+            width: 100%;
+            height: 50px;
+            background-color: #AAC80F;
+            color: #fff;
+            border-radius: .5rem
+        }
+        
+        #attributeList ul li .attrEntry .verificationControlContent .sendCode {
+            font-family: 'OpenSans';
+            font-size: 18px;
+            width: 100%;
+            background-color: var(--green);
+            border-radius: 15px;
+            height: 50px;
+            line-height: 50px;
+            letter-spacing: 0.9px;
+            color: var(--white);
+            border: none;
+            text-transform: uppercase;
+            transition: all 0.6s ease-in-out;
+            box-shadow: 0 0 10px var(--green-light);
+        }
+        
+        #attributeList ul li .attrEntry .verify .sendButton[id$=ver_but_send]:hover {
+            background-color: #AAC80F
+        }
+        
+        #attributeList ul li .attrEntry .verificationControlContent .sendCode:hover {
+            background-color: #AAC80F
+        }
+        
+        @media screen and (-ms-high-contrast:active) {
+            #attributeList ul li .attrEntry .verify button,
+            .buttons #continue {
+                border: 1px dashed #fff!important
+            }
+            #attributeList ul li .attrEntry .verify button:hover,
+            .buttons #continue:hover {
+                border: 1px solid #fff!important
+            }
+        }
+        
+        #attributeList ul li .attrEntry .verify .verifyButton {
+            width: inherit;
+            padding: 0 20px;
+            height: 50px;
+            background-color: #AAC80F;
+            color: #fff;
+            margin-right: 5px;
+            border-radius: .5rem
+        }
+        
+        #attributeList ul li .attrEntry .verificationControlContent .verifyCode {
+            width: inherit;
+            padding: 0 20px;
+            height: 50px;
+            background-color: #AAC80F;
+            color: #fff;
+            margin-right: 5px;
+            border-radius: .5rem
+        }
+        
+        #attributeList ul li .attrEntry .verify .verifyButton:hover {
+            background-color: #AAC80F
+        }
+        
+        #attributeList ul li .attrEntry .verificationControlContent .verifyCode:hover {
+            background-color: #AAC80F
+        }
+        
+        #attributeList ul li .attrEntry .verify .sendButton[id$=ver_but_resend] {
+            width: inherit;
+            padding: 0 20px;
+            border: 0;
+            font-size: 1em;
+            height: 50px;
+            right: 0;
+            bottom: -38px;
+            background-color: #AAC80F;
+            color: #fff;
+            border-radius: .5rem
+        }
+        
+        #attributeList ul li .attrEntry .verificationControlContent .sendNewCode {
+            width: inherit;
+            padding: 0 20px;
+            border: 0;
+            font-size: 1em;
+            height: 50px;
+            right: 0;
+            bottom: -38px;
+            background-color: #AAC80F;
+            color: #fff;
+            border-radius: .5rem
+        }
+        
+        #attributeList ul li .attrEntry .verify .sendButton[id$=ver_but_resend]:hover {
+            background-color: #AAC80F
+        }
+        
+        #attributeList ul li .attrEntry .verificationControlContent .sendNewCode:hover {
+            background-color: #AAC80F
+        }
+        
+        #attributeList ul li .attrEntry .verify .editButton {
+            border: none;
+            color: #fff;
+            background-color: #AAC80F;
+            width: 100%;
+            height: 50px;
+            border-radius: .5rem
+        }
+        
+        #attributeList ul li .attrEntry .verificationControlContent .changeClaims {
+            border: none;
+            color: #fff;
+            background-color: #AAC80F;
+            width: 100%;
+            height: 50px;
+            border-radius: .5rem
+        }
+        
+        #attributeList ul li .attrEntry .verify .editButton:hover {
+            background-color: #AAC80F
+        }
+        
+        #attributeList ul li .attrEntry .verificationControlContent .changeClaims:hover {
+            background-color: #AAC80F
+        }
+        
+        #attributeList ul li .attrEntry .verify #email_ver_input_label {
+            display: none!important
+        }
+        
+        #api .working {
+            background: url(data:image/gif;base64,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) no-repeat;
+            height: 30px;
+            width: auto;
+            background-position: center bottom
+        }
+        
+        #attributeList ul li .attrEntry .itemLevel {
+            display: none
+        }
+        
+        input[type=email],
+        input[type=password],
+        input[type=text] {
+            -webkit-appearance: none
+        }
+        
+        #attributeList ul li .attrEntry .dropdown_single {
+            height: 45px;
+            border-radius: .5rem;
+            width: 100%;
+            padding-left: 15px
+        }
+        
+        #attributeList ul li .attrEntry div#cpiminternal_dateOfBirth.date {
+            display: table;
+            width: 100%
+        }
+        
+        #attributeList ul li .attrEntry div#cpiminternal_dateOfBirth.date select {
+            border-radius: .5rem;
+            display: inline-block;
+            height: 50px;
+            padding-left: 15px
+        }
+        
+        #attributeList ul li .attrEntry div#cpiminternal_dateOfBirth select#cpiminternal_dateOfBirth_day.day {
+            margin-right: 3%;
+            width: 23%
+        }
+        
+        #attributeList ul li .attrEntry div#cpiminternal_dateOfBirth select#cpiminternal_dateOfBirth_month.month {
+            margin-right: 3%;
+            width: 38%
+        }
+        
+        #attributeList ul li .attrEntry div#cpiminternal_dateOfBirth select#cpiminternal_dateOfBirth_year.year {
+            width: 33%
+        }
+        
+        #attributeList ul li .helpLink {
+            display: none
+        }
+        
+        #attributeVerification .buttons {
+            margin-top: 30px
+        }
+        
+        @media screen and (max-width:100%) {
+            .row .panel-default .panel-body {
+                margin-top: 40px
+            }
+            .row .panel-default .panel-body .branding img {
+                display: block;
+                height: 80px;
+                width: auto;
+                margin: 0 auto;
+                margin-top:20px;
+            }
+            .row .panel-default .panel-body .branding h1 {
+                display: none
+            }
+            .row .panel-default .panel-body h3 {
+                font-size: 1.5em;
+                margin-top: 15px
+            }
+            #attributeVerification #attributeList ul li input {
+                width: 100%;
+                height: 40px;
+                border-radius: .5rem;
+                border: 1px solid #605e5c;
+                text-indent: 10px
+            }
+            #attributeVerification #attributeList ul li input::-webkit-input-placeholder {
+                text-indent: 10px
+            }
+            #attributeVerification #attributeList ul li #email {
+                width: 100%;
+                float: left;
+                position: relative;
+                z-index: 2
+            }
+            #attributeVerification #attributeList ul li #email_ver_but_verify {
+                background: 0 0;
+                border: 0;
+                color: #AAC80F;
+                font-size: 1em;
+                position: relative;
+                right: 0;
+                top: 60px;
+                font-size: 1.1em;
+                width: auto;
+                z-index: 1;
+                height: 20px
+            }
+            #attributeVerification #attributeList ul li #email_ver_input {
+                min-width: 50%;
+                width: 100%;
+                float: left
+            }
+            #attributeVerification #attributeList ul li #email_ver_but_resend {
+                top: 10px;
+                font-size: 1.1em;
+                height: 20px
+            }
+            #attributeVerification #attributeList ul li .attrEntry #email {
+                height: 40px
+            }
+            #attributeVerification #attributeList ul li .attrEntry .verify #email_ver_but_send:after {
+                content: " Verify";
+                font-size: 1.1em;
+                font-style: bold;
+                margin-left: 40%
+            }
+            #attributeVerification #attributeList ul li .attrEntry .verify #email_ver_but_send {
+                height: 40px;
+                width: auto;
+                float: right;
+                overflow: hidden;
+                text-indent: -200px
+            }
+            #attributeVerification #attributeList ul li .attrEntry .verify #email_ver_but_edit {
+                margin-bottom: 15px;
+                border: none;
+                color: #fff;
+                background-color: #AAC80F;
+                border-radius: .5rem;
+                font-size: 1em;
+                box-shadow: 0 0 40px 2px #dae1f7;
+                width: 30%;
+                height: 40px;
+                overflow: hidden;
+                padding-top: 6px;
+                margin-left: 40%
+            }
+            #attributeVerification #attributeList ul li .attrEntry .verify:after {
+                content: " ";
+                display: block;
+                clear: both
+            }
+            #attributeVerification #attributeList #verifying_blurb {
+                margin-top: 15px
+            }
+            #attributeVerification .buttons #continue {
+                height: 40px
+            }
+            #attributeVerification .buttons #cancel {
+                font-size: 1em;
+                left: 40%
+            }
+        }
+        
+        .panel,
+        .panel_layout,
+        .panel_layout_row,
+        body,
+        html {
+            height: 100%;
+            background-color: var(--white);
+        }
+        
+        @media only screen and (max-width:600px) {
+            img[data-tenant-branding-background=true] {
+                display: none
+            }
+            .col-lg-6 {
+                height: 100%
+            }
+            .container .row .panel-default {
+                border-radius: 0;
+                border: none;
+                box-shadow: none
+            }
+        }
+        /* endinject */
+    </style>
+
+
+    <style>
+        /* inject: css */
+        
+        .unified_container .row .panel-default {
+            padding: 40px 30px;
+            margin-top: auto;
+            margin-bottom: auto;
+            height: 100%;
+            /* background-color: #F5F5F5 */
+            padding-bottom: 100px;
+            background-color: var(--white);
+        }
+        
+        .unified_container .row .panel-default .panel-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            max-width: 380px;
+            height: 100%;
+            width: auto;
+            margin: 0 auto;
+            margin-top:40px;
+            padding: 0
+        }
+        
+        .unified_container .row .panel-default .panel-body .companyName {
+            font-size: 1.5em;
+            margin-bottom: 45px
+        }
+        
+        .unified_container .row .panel-default .panel-body .companyLogo {
+            display: block
+        }
+        
+        .unified_container .row .panel-default .panel-body img {
+            max-width: 100%;
+            width: auto;
+            height: 70px;
+            margin: 0 auto;
+            display: block
+        }
+        
+        .unified_container .row .panel-default .panel-body h3 {
+            font-size: 1.5em;
+            display: none
+        }
+        
+        .unified_container .row .panel-default #api {
+            display: table;
+            margin: 0;
+            width: 100%
+        }
+        
+        .unified_container .row .panel-default #api .intro {
+            display: none;
+            text-align: center
+        }
+        
+        .unified_container .row .panel-default #api .intro h2 {
+            font-size: 20px;
+            font-weight: 400
+        }
+        
+        .unified_container .row .panel-default #api .divider {
+            display: none
+        }
+        
+        .unified_container .row .panel-default #api .localAccount {
+            top: 10px;
+            width: 100%
+        }
+        
+        .unified_container .row .panel-default #api .localAccount .intro h2 {
+            font-size: 20px
+        }
+        
+        .unified_container .row .panel-default #api .localAccount .error {
+            color: #b00;
+            text-align: left
+        }
+        
+        .unified_container .row .panel-default #api .localAccount .entry .buttons {
+            /* margin: 0 0 23px 0; */
+            text-align: left;
+            margin: 21px 0 43px 0;
+        }
+        
+        .unified_container .row .panel-default #api .localAccount .entry .buttons button {
+            font-family: 'OpenSans';
+            font-size: 18px;
+            width: 100%;
+            background-color: var(--green);
+            border-radius: 15px;
+            height: 50px;
+            line-height: 50px;
+            letter-spacing: 0.9px;
+            color: var(--white);
+            border: none;
+            text-transform: uppercase;
+
+            transition: all 0.6s ease-in-out;
+
+            box-shadow:  0 0 10px var(--green-light);
+        }
+
+        .unified_container .row .panel-default #api .localAccount .entry .buttons button:hover,
+        .unified_container .row .panel-default #api .localAccount .entry .buttons button:active {
+            box-shadow:  inset 0 0 15px #0000004D, 0 0 10px var(--green-light);
+        }
+        
+        @media screen and (-ms-high-contrast:active) {
+            .unified_container .row .panel-default #api .accountButton,
+            .unified_container .row .panel-default #api .localAccount .entry .buttons button {
+                box-shadow:  inset 0 0 15px #0000004D, 0 0 10px var(--green-light);
+            }
+            .unified_container .row .panel-default #api .accountButton:hover,
+            .unified_container .row .panel-default #api .localAccount .entry .buttons button:hover {
+                box-shadow:  inset 0 0 15px #0000004D, 0 0 10px var(--green-light);
+            }
+        }
+        
+        .unified_container .row .panel-default #api .localAccount .entry .buttons button:focus,
+        .unified_container .row .panel-default #api .localAccount .entry .buttons button:hover {
+            box-shadow:  inset 0 0 15px #0000004D, 0 0 10px var(--green-light);
+        }
+        
+        .unified_container .row .panel-default #api .localAccount .entry .entry-item {
+            position: relative;
+            width: 100%;
+            padding-top: 6px;
+            padding-bottom: 6px;
+            display: block
+        }
+        
+        .unified_container .row .panel-default #api .localAccount .entry .entry-item label {
+            display: none
+        }
+        
+        .unified_container .row .panel-default #api .localAccount .entry .entry-item input:focus {
+        }
+        
+        .unified_container .row .panel-default #api .localAccount .entry .entry-item input {
+            outline: 0;
+            /* NEW */
+            border: 2px solid var(--green);
+            border-radius: 9px;
+            font-size: 15px;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 19px;
+            width: 100% !important;
+        }
+        
+        .unified_container .row .panel-default #api .localAccount .entry .entry-item #password {
+            margin-bottom: 20px
+        }
+        
+        .unified_container .row .panel-default #api .localAccount .entry .entry-item .password-label {
+            /* new */
+            position: absolute;
+            bottom: -10px;
+            left: 19px;
+            height: auto;
+        }
+        
+        .forgot-password {
+            text-align: left
+        }
+        
+        .forgot-password.center-height {
+            position: absolute;
+            bottom: 0;
+            clear: right;
+            cursor: pointer;
+            text-align: right
+        }
+        
+        @keyframes slideInFromRight {
+            0% {
+                opacity: 0;
+                transform: translateX(50%)
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0)
+            }
+        }
+        
+        .unified_container .row .panel-default #api .localAccount .entry .entry-item .password-label #forgotPassword {
+            cursor: pointer;
+            text-decoration: underline;
+            color: var(--grey-dark);
+            font-family: 'OpenSans';
+            font-size: 12px;
+        }
+        
+        .unified_container .row .panel-default #api .localAccount .rememberMe {
+            margin-left: 59%;
+            position: relative;
+            width: auto;
+            margin-top: -12px;
+        }
+        
+        .unified_container .row .panel-default #api .localAccount .rememberMe label {
+            /* new */
+            display: inline-block;
+            font-family: 'OpenSans';
+            font-size: 12px;
+            color: var(--grey-dark);
+            font-weight: normal;
+            vertical-align: middle;
+            margin-bottom: 0;        
+        }
+
+        .unified_container .row .panel-default #api .localAccount .rememberMe input {
+            vertical-align: middle;
+            width: 16px;
+            height: 16px;
+            border-radius: 2px;
+            border-color: var(--grey-dark);
+            border: none
+        }
+        
+        .unified_container .row .panel-default #api .localAccount .rememberMe.align-to-left {
+            margin-top: .5rem;
+            text-align: left;
+            margin-left: 0;
+            width: 100%;
+
+            position: relative;
+        }
+        
+        .working {
+            display: none
+        }
+        
+        .unified_container .row .panel-default #api .claims-provider-list-text-links p,
+        .unified_container .row .panel-default #api .localAccount .create p {
+            color: var(--black);
+        }
+        .unified_container .row .panel-default #api .localAccount .create {
+            font-family: 'OpenSans';
+            font-size: 15px;
+            position: absolute;
+            left: 0;
+            top: calc(100% - 60px);
+            left: 50%;
+            width: 100%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .unified_container .row .panel-default #api .localAccount .create #createAccount {
+            border-radius: .5rem;
+            display: inline-block;
+            font-size: 1em;
+            font-weight: 400;
+            height: inherit;
+            line-height: 1.3333333;
+            padding: 10px 16px;
+            text-align: center;
+            touch-action: manipulation;
+            user-select: none;
+            white-space: nowrap;
+            -moz-user-select: none;
+            -ms-touch-action: manipulation;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+            width: auto;
+            margin-top: -3rem;
+            cursor: pointer;
+            animation: .5s ease-out 0s 1 slideInFromRight;
+            color: rgba(0, 0, 0, 0.6);
+            text-decoration: underline;
+
+            /* new */
+            color: var(--green);
+        }
+        
+        .unified_container .row .panel-default #api .social {
+            display: table-footer-group;
+            position: relative;
+            top: 1px;
+            width: auto
+        }
+
+        .unified_container .row .panel-default #api .social .options {
+            display: flex;
+            column-gap: 21px;
+            justify-content: center;
+            flex-direction: row;
+        }
+        .unified_container .row .panel-default #api .social .options div:nth-child(2) {
+            order: 3;
+        }
+        .unified_container .row .panel-default #api .social .options div:nth-child(1) {
+            order: 2;
+        }
+        
+        .unified_container .row .panel-default #api .accountButton {
+            border: none;
+            outline: none;
+
+            display: block;
+            background-repeat: no-repeat;
+            text-indent: -9999px;
+            width: 45px;
+            height: 45px;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .unified_container .row .panel-default #api .accountButton:hover {
+        }
+        
+        .claims-provider-list-text-links-bottom-under-form {
+            text-align: left
+        }
+        
+        @media (max-width:100%) {
+            .unified_container .row .panel-default {
+                margin-top: auto;
+                margin-bottom: auto;
+                height: 550px
+            }
+            .unified_container .row .panel-default .panel-body {
+                padding: 5rem 3rem;
+                margin-top: 40px
+            }
+            .unified_container .row .panel-default .panel-body .companyName {
+                display: none
+            }
+            .unified_container .row .panel-default .panel-body .companyLogo {
+                display: block
+            }
+            .unified_container .row .panel-default .panel-body h3 {
+                display: block
+            }
+            .unified_container .row .panel-default .panel-body #api {
+                width: auto
+            }
+            .unified_container .row .panel-default .panel-body #api .social {
+                top: 370px;
+                width: auto
+            }
+            .unified_container .row .panel-default .panel-body #api .social .options .accountButton {
+                height: 40px
+            }
+            .unified_container .row .panel-default .panel-body #api .social .options #FacebookExchange {
+            }
+            .unified_container .row .panel-default .panel-body #api .social .options #GoogleExchange {
+                background-size: 20px;
+                background-position: 50% 75%;
+                margin-bottom: 10px
+            }
+            .unified_container .row .panel-default .panel-body #api .social .options #TwitterExchange {
+                background-size: 20px;
+                background-position-x: 56px;
+                background-position-y: 14px;
+                margin-bottom: 10px
+            }
+            .unified_container .row .panel-default .panel-body #api .localAccount {
+                top: 20px
+            }
+            .unified_container .row .panel-default .panel-body #api .localAccount .entry .entry-item {
+                display: block;
+                width: 100%;
+                margin-bottom: 10px
+            }
+            .unified_container .row .panel-default .panel-body #api .localAccount .entry .entry-item .password-label {
+                top: 145px
+            }
+            .unified_container .row .panel-default .panel-body #api .localAccount .entry .entry-item #logonIdentifier {
+                height: 40px
+            }
+            .unified_container .row .panel-default .panel-body #api .localAccount .entry .entry-item #password {
+                height: 40px
+            }
+            .unified_container .row .panel-default .panel-body #api .localAccount .entry .entry-item:nth-child(2) {
+                width: auto;
+                float: left
+            }
+            .unified_container .row .panel-default .panel-body #api .localAccount .entry .buttons #next {
+                width: auto;
+                text-indent: -4px;
+                height: 40px;
+                line-height: 0;
+                position: relative;
+                bottom: 5px;
+                left: 8px
+            }
+        }
+        
+        @media screen and (max-width:320px) {
+            .unified_container .row .panel-default #api .localAccount .rememberMe {
+                margin-top: 1.75rem;
+                text-align: left;
+                margin-left: 0;
+                width: 100%
+            }
+            .unified_container .row .panel-default #api .localAccount .entry .entry-item .password-label #forgotPassword {
+                bottom: -1rem
+            }
+            .forgot-password.center-height {
+                top: 0;
+                right: 12rem;
+                position: relative
+            }
+        }
+        /* endinject */
+    </style>
+    
+</head>
+
+<body>
+    <div class="container  unified_container " role="presentation">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <img class="companyLogo" data-tenant-branding-logo="true" src="https://svax-storage.azureedge.net/b2cstorage/logo_vorarlberg_bewegt.svg" alt="v>>bewegt Logo">
+                        <div id="api" role="main">
+                            <div id="api" data-name="Unified" role="main">
+                                <div class="heading">
+                                  <h1 role="heading"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">register</font></font></h1>
+                                </div>
+                                  <div class="claims-provider-list-buttons social" aria-label="Sign in with social network account" role="form">
+                                    <div class="intro">
+                                      <h2 aria-level="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sign in with social network account</font></font></h2>
+                                    </div>
+                                    <div class="options">
+                                        <div>
+                                            <button class="accountButton firstButton claims-provider-selection" id="FacebookExchange" role="link" autofocus=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Facebook</font></font></button>
+                                        </div>
+                                                    <div>
+                                            <button class="accountButton claims-provider-selection" id="GoogleExchange" role="link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Google</font></font></button>
+                                        </div>
+                                                    <div>
+                                            <button class="accountButton claims-provider-selection" id="AppleManagedExchange" role="link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sign in with Apple</font></font></button>
+                                        </div>
+                                                </div>
+                                  </div>
+                          
+                                  <div class="divider">
+                                    <h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">OR</font></font></h2>
+                                  </div>
+                                <form id="localAccountForm" action="JavaScript:void(0);" class="localAccount" aria-label="Sign up with email address">
+                                  <div class="intro">
+                                    <h2 aria-level="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                      Sign up with email address
+                                    </font></font></h2>
+                                  </div>
+                                  <div class="error pageLevel" aria-hidden="true" role="alert" style="display: none;">
+                                    <p></p>
+                                  </div>
+                                  <div class="entry">
+                                    <div class="entry-item">
+                                      <label for="email"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                        E-mail address
+                                      </font></font></label>
+                                      <div class="error itemLevel" aria-hidden="true" role="alert" style="display: none;">
+                                        <p></p>
+                                      </div>
+                                      <input type="email" id="email" name="E-Mail-Adresse" title="Enter a valid value for &quot;Email Address&quot;." pattern="^[a-zA-Z0-9!#$%&amp;'+^_`{}~-]+(?:\.[a-zA-Z0-9!#$%&amp;'+^_`{}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$" autofocus="" placeholder="E-mail address" aria-label="E-mail address">
+                                    </div>
+                                      <div class="entry-item">
+                                        <div class="password-label">
+                                          <label for="password"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">password</font></font></label>
+                                              <a id="forgotPassword" href="/svax.app/B2C_1_signUpsignIn_v1/api/CombinedSigninAndSignup/unified?claimsexchange=ForgotPassword&amp;csrf_token=aWVteTJ2VWpuQ3YvbG1HcVpodWJ5dE8xM3BzN2s5eUYwUmVST28vaGNodlh3VkhUOTl0NlJiVVlac212UmRrMG1KWVhoMmpQQXlDbzc1d2tLODVua2c9PTsyMDIyLTA0LTAxVDA4OjI0OjEyLjY0MjA5N1o7K0NSbk1KdUtvUjhPYnFFbEZWY01YZz09O3siT3JjaGVzdHJhdGlvblN0ZXAiOjF9&amp;tx=StateProperties=eyJUSUQiOiIwNGMwMTlmZi0yZDVmLTQ2NjQtODFjYy04OTQwZGZiNDNhZjEifQ&amp;p=B2C_1_signUpsignIn_v1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Forgot your password?</font></font></a>
+                                                        </div>
+                                        <div class="error itemLevel" aria-hidden="true" style="display: none;">
+                                          <p role="alert"></p>
+                                        </div>
+                                        <input type="password" id="password" name="Kennwort" placeholder="password" aria-label="password" autocomplete="current-password" aria-required="true">
+                                                    </div>
+                                    <div class="working"></div>
+                                        <div class="rememberMe">
+                                          <input id="rememberMe" type="checkbox" name="rememberMe">
+                                          <label for="rememberMe"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">remain signed in</font></font></label>
+                                        </div>
+                          
+                          
+                                    <div class="buttons">
+                                      <button id="next" type="submit" form="localAccountForm"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">register</font></font></button>
+                                    </div>
+                                  </div>
+                                        <div class="divider">
+                                          <h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">OR</font></font></h2>
+                                        </div>
+                                        <div class="create">
+                                          <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                            Don't have an account yet?</font></font><a id="createAccount" href="/svax.app/B2C_1_signUpsignIn_v1/api/CombinedSigninAndSignup/unified?local=signup&amp;csrf_token=aWVteTJ2VWpuQ3YvbG1HcVpodWJ5dE8xM3BzN2s5eUYwUmVST28vaGNodlh3VkhUOTl0NlJiVVlac212UmRrMG1KWVhoMmpQQXlDbzc1d2tLODVua2c9PTsyMDIyLTA0LTAxVDA4OjI0OjEyLjY0MjA5N1o7K0NSbk1KdUtvUjhPYnFFbEZWY01YZz09O3siT3JjaGVzdHJhdGlvblN0ZXAiOjF9&amp;tx=StateProperties=eyJUSUQiOiIwNGMwMTlmZi0yZDVmLTQ2NjQtODFjYy04OTQwZGZiNDNhZjEifQ&amp;p=B2C_1_signUpsignIn_v1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Join Now</font></font></a>
+                                          </p>
+                                        </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+        function makePwdToggler(pwd){
+        // Create show-password checkbox
+        var element = document.createElement('i');
+        element.setAttribute('class', 'far fa-eye-slash');
+        var id = pwd.id + "togglePassword";
+        element.setAttribute('id', id);
+
+        // Add show-password checkbox under password input
+        pwd.insertAdjacentElement('afterend', element);
+
+
+        element.addEventListener('click', function (e) {
+            // toggle the type attribute
+            const type = pwd.getAttribute('type') === 'password' ? 'text' : 'password';
+            pwd.setAttribute('type', type);
+            // toggle the eye slash icon
+            var para = document.getElementById(pwd.id + "togglePassword");
+            if(para.classList.contains('fa-eye')){
+                para.classList.remove('fa-eye');
+                para.classList.add('fa-eye-slash');
+            }
+            else{
+                para.classList.remove('fa-eye-slash');
+                para.classList.add('fa-eye');
+            }
+        });
+
+        element.addEventListener('keydown', function (e) {
+            // toggle the type attribute
+            const type = pwd.getAttribute('type') === 'password' ? 'text' : 'password';
+            pwd.setAttribute('type', type);
+            // toggle the eye slash icon
+            var para = document.getElementById(pwd.id + "togglePassword");
+            if(para.classList.contains('fa-eye')){
+                para.classList.remove('fa-eye');
+                para.classList.add('fa-eye-slash');
+            }
+            else{
+                para.classList.remove('fa-eye-slash');
+                para.classList.add('fa-eye');
+            }
+        });
+
+        }
+
+        function setupPwdTogglers(){
+            var pwdInputs = document.querySelectorAll('input[type=password]');
+            for (var i = 0; i < pwdInputs.length; i++) {
+                makePwdToggler(pwdInputs[i]);
+            }
+        }
+
+        setupPwdTogglers();
+    </script>
+</body>
+
+</html>

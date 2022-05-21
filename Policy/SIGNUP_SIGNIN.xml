@@ -1,0 +1,382 @@
+<TrustFrameworkPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" PolicySchemaVersion="0.3.0.0" TenantId="svaxapp.onmicrosoft.com" PolicyId="B2C_1A_signup_signin" PublicPolicyUri="http://svaxapp.onmicrosoft.com/B2C_1A_signup_signin" TenantObjectId="2e4cbd22-1b93-4775-a66b-13d16c56f605" DeploymentMode="Production" UserJourneyRecorderEndpoint="urn:journeyrecorder:applicationinsights">
+  <BasePolicy>
+    <TenantId>svaxapp.onmicrosoft.com</TenantId>
+    <PolicyId>B2C_1A_TrustFrameworkExtensions</PolicyId>
+  </BasePolicy>
+  <BuildingBlocks>
+    <ClaimsSchema>
+      <!-- Read only email address to present to the user-->
+      <ClaimType Id="readonlyEmail">
+        <DisplayName>E-mail Address</DisplayName>
+        <DataType>string</DataType>
+        <UserInputType>Readonly</UserInputType>
+      </ClaimType>
+    </ClaimsSchema>
+    <ClaimsTransformations>
+      <ClaimsTransformation Id="CreateReadonlyEmailClaim" TransformationMethod="FormatStringClaim">
+        <InputClaims>
+          <InputClaim ClaimTypeReferenceId="email" TransformationClaimType="inputClaim" />
+        </InputClaims>
+        <InputParameters>
+          <InputParameter Id="stringFormat" DataType="string" Value="{0}" />
+        </InputParameters>
+        <OutputClaims>
+          <OutputClaim ClaimTypeReferenceId="readonlyEmail" TransformationClaimType="outputClaim" />
+        </OutputClaims>
+      </ClaimsTransformation>
+    </ClaimsTransformations>
+    <ContentDefinitions>
+      <ContentDefinition Id="api.localaccount.emailVerification">
+        <LoadUri>https://svaxmovestorage.blob.core.windows.net/b2cstorage/signupv15.html</LoadUri>
+        <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+        <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.1.10</DataUri>
+        <LocalizedResourcesReferences MergeBehavior="Prepend">
+          <LocalizedResourcesReference Language="en" LocalizedResourcesReferenceId="api.custom-email.en" />
+          <LocalizedResourcesReference Language="de" LocalizedResourcesReferenceId="api.custom-email.de" />
+          <!-- Add more languages here -->
+        </LocalizedResourcesReferences>
+      </ContentDefinition>
+      <ContentDefinition Id="api.localaccountpasswordreset">
+        <LoadUri>https://svaxmovestorage.blob.core.windows.net/b2cstorage/signupv15.html</LoadUri>
+        <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+        <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.1.10</DataUri>
+        <LocalizedResourcesReferences MergeBehavior="Prepend">
+          <LocalizedResourcesReference Language="en" LocalizedResourcesReferenceId="api.custom-email.en" />
+          <LocalizedResourcesReference Language="de" LocalizedResourcesReferenceId="api.custom-email.de" />
+        </LocalizedResourcesReferences>
+      </ContentDefinition>
+    </ContentDefinitions>
+    <Localization Enabled="true">
+      <SupportedLanguages DefaultLanguage="de" MergeBehavior="ReplaceAll">
+        <SupportedLanguage>en</SupportedLanguage>
+        <SupportedLanguage>de</SupportedLanguage>
+      </SupportedLanguages>
+      <LocalizedResources Id="api.custom-email.en">
+        <LocalizedStrings>
+          <!--Email template parameters-->
+          <LocalizedString ElementType="GetLocalizedStringsTransformationClaimType" StringId="email_subject">Contoso account email verification code</LocalizedString>
+          <LocalizedString ElementType="GetLocalizedStringsTransformationClaimType" StringId="email_message">Thanks for validating the account</LocalizedString>
+          <LocalizedString ElementType="GetLocalizedStringsTransformationClaimType" StringId="email_code">Your code is</LocalizedString>
+          <LocalizedString ElementType="GetLocalizedStringsTransformationClaimType" StringId="email_signature">Sincerely</LocalizedString>
+          <!-- Display control sign-up UI elements-->
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationControl" StringId="emailVerificationControl_intro_msg">Verification is necessary. Please click Send button.</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationControl" StringId="emailVerificationControl_success_send_code_msg">Verification code has been sent to your inbox. Please copy it to the input box below.</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationControl" StringId="emailVerificationControl_failure_send_code_msg">We are having trouble verifying your email address. Please enter a valid email address and try again.</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationControl" StringId="emailVerificationControl_success_verify_code_msg">E-mail address verified. You can now continue.</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationControl" StringId="emailVerificationControl_failure_verify_code_msg">We are having trouble verifying your email address. Please try again.</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationControl" StringId="emailVerificationControl_but_send_code">Send verification code</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationControl" StringId="emailVerificationControl_but_verify_code">Verify code</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationControl" StringId="emailVerificationControl_but_send_new_code">Send new code</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationControl" StringId="emailVerificationControl_but_change_claims">Change e-mail</LocalizedString>
+          <!-- Display control password reset UI elements-->
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationSSPRControl" StringId="emailVerificationSSPRControl_intro_msg">Verification is necessary. Please click Send button.</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationSSPRControl" StringId="emailVerificationSSPRControl_success_send_code_msg">Verification code has been sent to your inbox. Please copy it to the input box below.</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationSSPRControl" StringId="emailVerificationSSPRControl_failure_send_code_msg">We are having trouble verifying your email address. Please enter a valid email address and try again.</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationSSPRControl" StringId="emailVerificationSSPRControl_success_verify_code_msg">E-mail address verified. You can now continue.</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationSSPRControl" StringId="emailVerificationSSPRControl_failure_verify_code_msg">We are having trouble verifying your email address. Please try again.</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationSSPRControl" StringId="emailVerificationSSPRControl_but_send_code">Send verification code</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationSSPRControl" StringId="emailVerificationSSPRControl_but_verify_code">Verify code</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationSSPRControl" StringId="emailVerificationSSPRControl_but_send_new_code">Send new code</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationSSPRControl" StringId="emailVerificationSSPRControl_but_change_claims">Change e-mail</LocalizedString>
+          <!-- Claims-->
+          <LocalizedString ElementType="ClaimType" ElementId="emailVerificationCode" StringId="DisplayName">Verification Code</LocalizedString>
+          <LocalizedString ElementType="ClaimType" ElementId="emailVerificationCode" StringId="UserHelpText">Verification code received in the email.</LocalizedString>
+          <LocalizedString ElementType="ClaimType" ElementId="emailVerificationCode" StringId="AdminHelpText">Verification code received in the email.</LocalizedString>
+          <LocalizedString ElementType="ClaimType" ElementId="email" StringId="DisplayName">Email</LocalizedString>
+          <!-- Email validation error messages-->
+          <LocalizedString ElementType="ErrorMessage" StringId="UserMessageIfSessionDoesNotExist">You have exceeded the maximum time allowed.</LocalizedString>
+          <LocalizedString ElementType="ErrorMessage" StringId="UserMessageIfMaxRetryAttempted">You have exceeded the number of retries allowed.</LocalizedString>
+          <LocalizedString ElementType="ErrorMessage" StringId="UserMessageIfInvalidCode">You have entered the wrong code.</LocalizedString>
+          <LocalizedString ElementType="ErrorMessage" StringId="UserMessageIfSessionConflict">Cannot verify the code, please try again later.</LocalizedString>
+          <LocalizedString ElementType="ErrorMessage" StringId="UserMessageIfVerificationFailedRetryAllowed">The verification has failed, please try again.</LocalizedString>
+        </LocalizedStrings>
+      </LocalizedResources>
+      <LocalizedResources Id="api.custom-email.de">
+        <LocalizedStrings>
+          <!--Email template parameters-->
+          <LocalizedString ElementType="GetLocalizedStringsTransformationClaimType" StringId="email_subject">E-Mail- Verifizierungscode</LocalizedString>
+          <LocalizedString ElementType="GetLocalizedStringsTransformationClaimType" StringId="email_message">Danke für die Validierung des Kontos</LocalizedString>
+          <LocalizedString ElementType="GetLocalizedStringsTransformationClaimType" StringId="email_code">Dein Code ist</LocalizedString>
+          <LocalizedString ElementType="GetLocalizedStringsTransformationClaimType" StringId="email_signature">Mit freundlichen Grüßen</LocalizedString>
+          <!-- Display control sign-up UI elements-->
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationControl" StringId="emailVerificationControl_intro_msg">Eine Verifizierung ist erforderlich. Bitte klicke auf die Schaltfläche senden</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationControl" StringId="emailVerificationControl_success_send_code_msg">Der Verifizierungscode wurde an deinen Posteingang gesendet. Bitte kopiere ihn in das Eingabefeld unten.</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationControl" StringId="emailVerificationControl_failure_send_code_msg">Wir haben Probleme bei der Verifizierung deiner E-Mail-Adresse. Bitte gebe eine gültige E-Mail-Adresse ein und versuche es erneut.</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationControl" StringId="emailVerificationControl_success_verify_code_msg">E-Mail wurde verifiziert. Du kannst fortfahren.</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationControl" StringId="emailVerificationControl_failure_verify_code_msg">Wir haben Probleme bei der Verifizierung deiner E-Mail-Adresse. Bitte versuche es erneut.</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationControl" StringId="emailVerificationControl_but_send_code">Verifizierungscode senden</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationControl" StringId="emailVerificationControl_but_verify_code">Code verifizieren</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationControl" StringId="emailVerificationControl_but_send_new_code">Neuen Code senden</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationControl" StringId="emailVerificationControl_but_change_claims">E-Mail-Adresse ändern</LocalizedString>
+          <!-- Display control password reset UI elements-->
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationSSPRControl" StringId="emailVerificationSSPRControl_intro_msg">Eine Verifizierung ist erforderlich. Bitte klicke auf die Schaltfläche senden.</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationSSPRControl" StringId="emailVerificationSSPRControl_success_send_code_msg">Der Verifizierungscode wurde an deinen Posteingang gesendet. Bitte kopiere ihn in das Eingabefeld unten.</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationSSPRControl" StringId="emailVerificationSSPRControl_failure_send_code_msg">Wir haben Probleme bei der Verifizierung deiner E-Mail-Adresse. Bitte gebe eine gültige E-Mail Adresse ein und versuche es erneut.</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationSSPRControl" StringId="emailVerificationSSPRControl_success_verify_code_msg">Email Adresse wurde verifiziert. Du kannst jetzt fortfahren.</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationSSPRControl" StringId="emailVerificationSSPRControl_failure_verify_code_msg">Wir haben Probleme bei der Verifizierung deiner E-Mail-Adresse. Bitte versuche es erneut.</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationSSPRControl" StringId="emailVerificationSSPRControl_but_send_code">Verifizierungscode senden</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationSSPRControl" StringId="emailVerificationSSPRControl_but_verify_code">Code verifizieren</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationSSPRControl" StringId="emailVerificationSSPRControl_but_send_new_code">Neuen Code senden</LocalizedString>
+          <LocalizedString ElementType="DisplayControl" ElementId="emailVerificationSSPRControl" StringId="emailVerificationSSPRControl_but_change_claims">E-Mail Adresse ändern</LocalizedString>
+
+          <!-- Claims-->
+          <LocalizedString ElementType="ClaimType" ElementId="emailVerificationCode" StringId="DisplayName">Verifizierungscode</LocalizedString>
+          <LocalizedString ElementType="ClaimType" ElementId="emailVerificationCode" StringId="UserHelpText">Verifizierungscode in der E-Mail erhalten.</LocalizedString>
+          <LocalizedString ElementType="ClaimType" ElementId="emailVerificationCode" StringId="AdminHelpText">Verifizierungscode in der E-Mail erhalten.</LocalizedString>
+          <LocalizedString ElementType="ClaimType" ElementId="email" StringId="DisplayName">E-Mail-Adresse</LocalizedString>
+          <LocalizedString ElementType="ClaimType" ElementId="VerificationCode" StringId="DisplayName">Verifizierungscode</LocalizedString>
+          <!-- Email validation error messages-->
+          <LocalizedString ElementType="ErrorMessage" StringId="UserMessageIfSessionDoesNotExist">Du hast die zulässige Zeit überschritten.</LocalizedString>
+          <LocalizedString ElementType="ErrorMessage" StringId="UserMessageIfMaxRetryAttempted">Du hast die zulässige Anzahl von Wiederholungsversuchen überschritten.</LocalizedString>
+          <LocalizedString ElementType="ErrorMessage" StringId="UserMessageIfInvalidCode">Du hast den falschen Code eingegeben</LocalizedString>
+          <LocalizedString ElementType="ErrorMessage" StringId="UserMessageIfSessionConflict">Der Code kann nicht verifiziert werden, bitte versuchen es später noch einmal.</LocalizedString>
+          <LocalizedString ElementType="ErrorMessage" StringId="UserMessageIfVerificationFailedRetryAllowed">Die Verifizierung ist fehlgeschlagen, bitte versuche es erneut.</LocalizedString>
+        </LocalizedStrings>
+      </LocalizedResources>
+    </Localization>
+  </BuildingBlocks>
+  <ClaimsProviders>
+    <ClaimsProvider>
+      <DisplayName>Email Verification</DisplayName>
+      <TechnicalProfiles>
+        <!--Email verification only-->
+        <TechnicalProfile Id="EmailVerification">
+          <DisplayName>Initiate Email Address Verification For Local Account</DisplayName>
+          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <Metadata>
+            <Item Key="ContentDefinitionReferenceId">api.localaccount.emailVerification</Item>
+          </Metadata>
+          <DisplayClaims>
+            <DisplayClaim DisplayControlReferenceId="emailVerificationControl" />
+          </DisplayClaims>
+        </TechnicalProfile>
+        <TechnicalProfile Id="SelfAsserted-LocalAccountSignin-Email">
+          <DisplayName>Local Account Signin</DisplayName>
+          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <Metadata>
+            <Item Key="SignUpTarget">EmailExchange</Item>
+            <Item Key="setting.operatingMode">Email</Item>
+            <Item Key="ContentDefinitionReferenceId">api.localaccountsignin</Item>
+            <Item Key="IncludeClaimResolvingInClaimsHandling">true</Item>
+            <Item Key="setting.enableRememberMe">true</Item>
+          </Metadata>
+          <IncludeInSso>true</IncludeInSso>
+          <InputClaims>
+            <InputClaim ClaimTypeReferenceId="signInName" DefaultValue="{OIDC:LoginHint}" AlwaysUseDefaultValue="true" />
+          </InputClaims>
+          <OutputClaims>
+            <OutputClaim ClaimTypeReferenceId="signInName" Required="true" />
+            <OutputClaim ClaimTypeReferenceId="password" Required="true" />
+            <OutputClaim ClaimTypeReferenceId="objectId" />
+            <OutputClaim ClaimTypeReferenceId="authenticationSource" />
+          </OutputClaims>
+          <ValidationTechnicalProfiles>
+            <ValidationTechnicalProfile ReferenceId="login-NonInteractive" />
+          </ValidationTechnicalProfiles>
+          <UseTechnicalProfileForSessionManagement ReferenceId="SM-AAD" />
+        </TechnicalProfile>
+      </TechnicalProfiles>
+    </ClaimsProvider>
+  </ClaimsProviders>
+  <UserJourneys>
+    <UserJourney Id="SignUpOrSignIn_Custom">
+      <OrchestrationSteps>
+        <OrchestrationStep Order="1" Type="ClaimsExchange">
+          <ClaimsExchanges>
+            <ClaimsExchange Id="Get-Current-Time" TechnicalProfileReferenceId="Get-Current-Time" />
+          </ClaimsExchanges>
+        </OrchestrationStep>
+        <OrchestrationStep Order="2" Type="CombinedSignInAndSignUp" ContentDefinitionReferenceId="api.signuporsignin">
+          <ClaimsProviderSelections>
+            <ClaimsProviderSelection TargetClaimsExchangeId="FacebookExchange" />
+            <ClaimsProviderSelection TargetClaimsExchangeId="GoogleExchange" />
+            <ClaimsProviderSelection TargetClaimsExchangeId="AppleExchange" />
+            <ClaimsProviderSelection ValidationClaimsExchangeId="LocalAccountSigninEmailExchange" />
+            <ClaimsProviderSelection TargetClaimsExchangeId="ForgotPasswordExchange" />
+          </ClaimsProviderSelections>
+          <ClaimsExchanges>
+            <ClaimsExchange Id="LocalAccountSigninEmailExchange" TechnicalProfileReferenceId="SelfAsserted-LocalAccountSignin-Email" />
+          </ClaimsExchanges>
+        </OrchestrationStep>
+        <!-- Check if the user has selected to sign in using one of the social providers -->
+        <OrchestrationStep Order="3" Type="ClaimsExchange">
+          <Preconditions>
+            <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
+              <Value>objectId</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+          </Preconditions>
+          <ClaimsExchanges>
+            <ClaimsExchange Id="FacebookExchange" TechnicalProfileReferenceId="Facebook-OAUTH" />
+            <ClaimsExchange Id="GoogleExchange" TechnicalProfileReferenceId="Google-OAuth2" />
+            <ClaimsExchange Id="AppleExchange" TechnicalProfileReferenceId="Apple-OIDC" />
+            <ClaimsExchange Id="EmailExchange" TechnicalProfileReferenceId="EmailVerification" />
+            <ClaimsExchange Id="ForgotPasswordExchange" TechnicalProfileReferenceId="ForgotPassword" />
+          </ClaimsExchanges>
+        </OrchestrationStep>
+        <OrchestrationStep Order="4" Type="InvokeSubJourney">
+          <Preconditions>
+            <Precondition Type="ClaimsExist" ExecuteActionsIf="false">
+              <Value>isForgotPassword</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+          </Preconditions>
+          <JourneyList>
+            <Candidate SubJourneyReferenceId="PasswordReset" />
+          </JourneyList>
+        </OrchestrationStep>
+        <OrchestrationStep Order="5" Type="ClaimsExchange">
+          <Preconditions>
+            <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
+              <Value>alternativeSecurityId</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+            <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
+              <Value>objectId</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+          </Preconditions>
+          <ClaimsExchanges>
+            <ClaimsExchange Id="LocalAccountSignUpWithReadOnlyEmail" TechnicalProfileReferenceId="LocalAccountSignUpWithLogonEmailCustom" />
+          </ClaimsExchanges>
+        </OrchestrationStep>
+        <!-- For social IDP authentication, attempt to find the user account in the directory. -->
+        <OrchestrationStep Order="6" Type="ClaimsExchange">
+          <Preconditions>
+            <Precondition Type="ClaimEquals" ExecuteActionsIf="true">
+              <Value>authenticationSource</Value>
+              <Value>localAccountAuthentication</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+          </Preconditions>
+          <ClaimsExchanges>
+            <ClaimsExchange Id="AADUserReadUsingAlternativeSecurityId" TechnicalProfileReferenceId="AAD-UserReadUsingAlternativeSecurityId-NoError" />
+          </ClaimsExchanges>
+        </OrchestrationStep>
+        <!-- Show self-asserted page only if the directory does not have the user account already (i.e. we do not have an objectId). 
+      This can only happen when authentication happened using a social IDP. If local account was created or authentication done
+      using ESTS in step 2, then an user account must exist in the directory by this time. -->
+        <OrchestrationStep Order="7" Type="ClaimsExchange">
+          <Preconditions>
+            <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
+              <Value>objectId</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+          </Preconditions>
+          <ClaimsExchanges>
+            <ClaimsExchange Id="SelfAsserted-Social" TechnicalProfileReferenceId="SelfAsserted-Social" />
+          </ClaimsExchanges>
+        </OrchestrationStep>
+        <!-- This step reads any user attributes that we may not have received when authenticating using ESTS so they can be sent 
+      in the token. -->
+        <OrchestrationStep Order="8" Type="ClaimsExchange">
+          <Preconditions>
+            <Precondition Type="ClaimEquals" ExecuteActionsIf="true">
+              <Value>authenticationSource</Value>
+              <Value>socialIdpAuthentication</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+          </Preconditions>
+          <ClaimsExchanges>
+            <ClaimsExchange Id="AADUserReadWithObjectId" TechnicalProfileReferenceId="AAD-UserReadUsingObjectId" />
+          </ClaimsExchanges>
+        </OrchestrationStep>
+        <!-- The previous step (SelfAsserted-Social) could have been skipped if there were no attributes to collect 
+         from the user. So, in that case, create the user in the directory if one does not already exist 
+         (verified using objectId which would be set from the last step if account was created in the directory. -->
+        <OrchestrationStep Order="9" Type="ClaimsExchange">
+          <Preconditions>
+            <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
+              <Value>objectId</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+          </Preconditions>
+          <ClaimsExchanges>
+            <ClaimsExchange Id="AADUserWrite" TechnicalProfileReferenceId="AAD-UserWriteUsingAlternativeSecurityId" />
+          </ClaimsExchanges>
+        </OrchestrationStep>
+        <!-- This step reads any user attributes that we may not have received when authenticating using ESTS so they can be sent 
+            in the token. -->
+        <OrchestrationStep Order="10" Type="ClaimsExchange">
+          <ClaimsExchanges>
+            <ClaimsExchange Id="Check-TOU-Status" TechnicalProfileReferenceId="Check-TOU-Status" />
+          </ClaimsExchanges>
+        </OrchestrationStep>
+        <!-- Display Terms of Use consent page for any SignIn scenario based on termsOfUseConsentRequired claim -->
+        <OrchestrationStep Order="11" Type="ClaimsExchange">
+          <Preconditions>
+            <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
+              <Value>newUser</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+            <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
+              <Value>alternativeSecurityId</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+            <Precondition Type="ClaimEquals" ExecuteActionsIf="false">
+              <Value>termsOfUseConsentRequired</Value>
+              <Value>True</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+          </Preconditions>
+          <ClaimsExchanges>
+            <ClaimsExchange Id="ShowToUConsentPageForNewUser" TechnicalProfileReferenceId="SelfAsserted-Input-ToU-SignIn" />
+          </ClaimsExchanges>
+        </OrchestrationStep>
+        <OrchestrationStep Order="12" Type="SendClaims" CpimIssuerTechnicalProfileReferenceId="JwtIssuer" />
+      </OrchestrationSteps>
+      <ClientDefinition ReferenceId="DefaultWeb" />
+    </UserJourney>
+  </UserJourneys>
+  <SubJourneys>
+    <SubJourney Id="PasswordReset" Type="Call">
+      <OrchestrationSteps>
+        <!-- Validate user's email address. -->
+        <OrchestrationStep Order="1" Type="ClaimsExchange">
+          <ClaimsExchanges>
+            <ClaimsExchange Id="PasswordResetUsingEmailAddressExchange" TechnicalProfileReferenceId="LocalAccountDiscoveryUsingEmailAddress" />
+          </ClaimsExchanges>
+        </OrchestrationStep>
+        <!-- Collect and persist a new password. -->
+        <OrchestrationStep Order="2" Type="ClaimsExchange">
+          <ClaimsExchanges>
+            <ClaimsExchange Id="NewCredentials" TechnicalProfileReferenceId="LocalAccountWritePasswordUsingObjectId" />
+          </ClaimsExchanges>
+        </OrchestrationStep>
+      </OrchestrationSteps>
+    </SubJourney>
+  </SubJourneys>
+  <RelyingParty>
+    <DefaultUserJourney ReferenceId="SignUpOrSignIn_Custom" />
+    <UserJourneyBehaviors>
+      <SingleSignOn Scope="Application" />
+      <SessionExpiryType>Absolute</SessionExpiryType>
+      <SessionExpiryInSeconds>86400</SessionExpiryInSeconds>
+      <!-- <JourneyInsights TelemetryEngine="ApplicationInsights" InstrumentationKey="8a938983-2d60-4214-803e-607a1ac30730" DeveloperMode="true" ClientEnabled="false" ServerEnabled="true" TelemetryVersion="1.0.0" /> -->
+      <ContentDefinitionParameters>
+        <Parameter Name="ui_locales">de</Parameter>
+      </ContentDefinitionParameters>
+      <ScriptExecution>Allow</ScriptExecution>
+    </UserJourneyBehaviors>
+    <TechnicalProfile Id="PolicyProfile">
+      <DisplayName>PolicyProfile</DisplayName>
+      <Protocol Name="OpenIdConnect" />
+      <OutputClaims>
+        <OutputClaim ClaimTypeReferenceId="givenName" />
+        <OutputClaim ClaimTypeReferenceId="surName" />
+        <OutputClaim ClaimTypeReferenceId="displayName" />
+        <OutputClaim ClaimTypeReferenceId="newUser" />
+        <OutputClaim ClaimTypeReferenceId="objectId" />
+        <OutputClaim ClaimTypeReferenceId="objectId" PartnerClaimType="sub" />
+        <OutputClaim ClaimTypeReferenceId="identityProvider" />
+        <OutputClaim ClaimTypeReferenceId="tenantId" AlwaysUseDefaultValue="true" DefaultValue="{Policy:TenantObjectId}" />
+        <OutputClaim ClaimTypeReferenceId="extension_ST_Choice" Required="true" />
+        <OutputClaim ClaimTypeReferenceId="currentTime" />
+        <OutputClaim ClaimTypeReferenceId="email" />
+        <OutputClaim ClaimTypeReferenceId="termsOfUseConsentRequired" />
+        <OutputClaim ClaimTypeReferenceId="isForgotPassword" DefaultValue="false" />
+      </OutputClaims>
+      <SubjectNamingInfo ClaimType="sub" />
+    </TechnicalProfile>
+  </RelyingParty>
+</TrustFrameworkPolicy>
